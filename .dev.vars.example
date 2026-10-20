@@ -1,0 +1,6 @@
+# Copy to .dev.vars for `npm run dev`. Never commit .dev.vars.
+DEV_SKIP_ACCESS=true
+TODOIST_TOKEN=
+GOOGLE_CLIENT_ID=
+GOOGLE_CLIENT_SECRET=
+FEED_TOKEN=

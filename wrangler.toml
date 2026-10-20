@@ -1,0 +1,32 @@
+name = "now-app"
+main = "src/worker.ts"
+compatibility_date = "2025-09-01"
+
+# The Worker runs first on every request so Cloudflare Access is checked
+# before any page or file is served.
+[assets]
+directory = "./public"
+binding = "ASSETS"
+run_worker_first = true
+
+# Create with: npx wrangler kv namespace create NOW_KV
+# then paste the id it prints here.
+[[kv_namespaces]]
+binding = "NOW_KV"
+id = "REPLACE_WITH_KV_NAMESPACE_ID"
+
+[vars]
+TIMEZONE = "America/Los_Angeles"
+# Local times a "food" chip watches for, 24-hour.
+MEALTIMES = "08:00,12:30,18:30"
+# "busy": any timed, busy event Lindsey hasn't declined.
+# "people_or_place": also needs another attendee, a location or a video link.
+ANCHOR_RULE = "busy"
+# Filled in during Cloudflare Access setup (see README).
+ACCESS_TEAM_DOMAIN = ""
+ACCESS_AUD = ""
+ALLOWED_EMAIL = ""
+
+# Secrets (set with `npx wrangler secret put NAME`, never committed):
+#   TODOIST_TOKEN, GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, FEED_TOKEN
+#   GOOGLE_REFRESH_TOKEN is optional; /auth/google stores it in KV instead.
